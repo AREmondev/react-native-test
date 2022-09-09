@@ -6,7 +6,16 @@ import {
   Roboto_400Regular_Italic
 } from "@expo-google-fonts/roboto";
 import AppLoading from 'expo-app-loading';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
+
+const Stack = createNativeStackNavigator();
+
+
 export default function App() {
+
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_400Regular_Italic
@@ -16,10 +25,13 @@ export default function App() {
     return <AppLoading />;
   }else {
     return (
-      <View style={styles.container}>
-        <Text style={{ fontFamily: "Roboto_400Regular_Italic"}}>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+         <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Product" component={ProductScreen} />
+          </Stack.Navigator>
+      </NavigationContainer>
+      
     );
   }
 
